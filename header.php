@@ -23,7 +23,13 @@
 				</li>
               </ul>
             </div>
-			<a class="btn btn-secondary" href="login.html">Log in</a>
+			<?php
+			if(isset($_SESSION['user'])){
+				echo '<a class="btn btn-secondary" href="index.php?action=logout">Log out</a>';
+			} else{
+				echo '<a class="btn btn-secondary" href="login.php">Log in</a>';
+			}
+			?>
     	</nav>
 	</div>
 </header>
