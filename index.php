@@ -5,6 +5,7 @@ include('inc/db_connect.php');
 if(isset($_GET) && !empty($_GET)){
   if($_GET['action'] == 'logout'){
     unset($_SESSION['user']);
+    header('Location: index.php');
   }
 }
 
@@ -49,13 +50,25 @@ include('head.php');
                 if($row['name'] == 'berry'){
                   $output .= '<div id="products">
                   <p>Product: '.$row['prodname'].'</p>
-                  <p>Price: '.$row['price'].'/kg</p>
-                  </div>';
+                  <p>Price: '.$row['price'].'€/kg</p>';
+                  if(isset($_SESSION['user'])){
+                    $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                    <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                    </div>';
+                  } else{
+                    $output .= '</div>';
+                  }
                 } else{
                   $output .= '<div id="products">
                   <p>Product: '.$row['prodname'].'</p>
-                  <p>Price: '.$row['price'].'</p>
-                  </div>';
+                  <p>Price: '.$row['price'].'€</p>';
+                  if(isset($_SESSION['user'])){
+                    $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                    <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                    </div>';
+                  } else{
+                    $output .= '</div>';
+                  }
                 }
               }
             }
@@ -63,24 +76,42 @@ include('head.php');
               while($row = $fruit_stmt->fetch(PDO::FETCH_ASSOC)){
                 $output .= '<div id="products">
                 <p>Product: '.$row['prodname'].'</p>
-                <p>Price: '.$row['price'].'</p>
-                </div>';
+                <p>Price: '.$row['price'].'€</p>';
+                if(isset($_SESSION['user'])){
+                  $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                  <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                  </div>';
+                } else{
+                  $output .= '</div>';
+                }
               }
             }
             if($_GET['action'] == 'vegetables'){
               while($row = $vege_stmt->fetch(PDO::FETCH_ASSOC)){
                 $output .= '<div id="products">
                 <p>Product: '.$row['prodname'].'</p>
-                <p>Price: '.$row['price'].'</p>
-                </div>';
+                <p>Price: '.$row['price'].'€</p>';
+                if(isset($_SESSION['user'])){
+                  $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                  <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                  </div>';
+                } else{
+                  $output .= '</div>';
+                }
               }
             }
             if($_GET['action'] == 'berries'){
               while($row = $berry_stmt->fetch(PDO::FETCH_ASSOC)){
                 $output .= '<div id="products">
                 <p>Product: '.$row['prodname'].'</p>
-                <p>Price: '.$row['price'].'/kg</p>
-                </div>';
+                <p>Price: '.$row['price'].'€/kg</p>';
+                if(isset($_SESSION['user'])){
+                  $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                  <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                  </div>';
+                } else{
+                  $output .= '</div>';
+                }
               }
             }
             if(!empty($output)){
@@ -93,13 +124,25 @@ include('head.php');
               if($row['name'] == 'berry'){
                 $output .= '<div id="products">
                 <p>Product: '.$row['prodname'].'</p>
-                <p>Price: '.$row['price'].'/kg</p>
-                </div>';
+                <p>Price: '.$row['price'].'€/kg</p>';
+                if(isset($_SESSION['user'])){
+                  $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                  <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                  </div>';
+                } else{
+                  $output .= '</div>';
+                }
               } else{
                 $output .= '<div id="products">
                 <p>Product: '.$row['prodname'].'</p>
-                <p>Price: '.$row['price'].'</p>
-                </div>';
+                <p>Price: '.$row['price'].'€</p>';
+                if(isset($_SESSION['user'])){
+                  $output .= '<a href="delete.php?id=' . $row['productid'] . '">Delete</a>
+                  <a href="update.php?id=' . $row['productid'] . '">Update</a>
+                  </div>';
+                } else{
+                  $output .= '</div>';
+                }
               }
             }
             if(!empty($output)){

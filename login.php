@@ -13,8 +13,8 @@
   </head>
 
   <body class="text-center">
-    <?php if(!empty($output)){ echo '<h3 class="alert alert-warning">' . $output . '<h3>'; } ?>
     <form class="form-signin" action="login_handler.php" method="post">
+      <?php if(!empty($_GET['error'])){ echo '<h3 class="alert alert-warning">' . $_GET['error'] . '<h3>'; } ?>
       <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
 
       <label for="username" class="sr-only">Email address</label>

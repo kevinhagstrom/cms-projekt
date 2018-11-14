@@ -12,10 +12,13 @@ if(isset($_POST) && !empty($_POST)){
   $res->execute($row);
   if($res->fetchColumn() < 1){
     $output = 'Couldn\'t find user';
-    header('Location: login.php');
+    header('Location: login.php?error=' . $output);
   } else{
     $_SESSION['user'] = 1;
     header('Location: index.php');
   }
+} else{
+  $output = 'Something went wrong';
+  header('Location: login.php?error=' . $output);
 }
 ?>
